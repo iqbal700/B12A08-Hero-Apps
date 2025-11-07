@@ -18,8 +18,8 @@ const Hero = () => {
             {/*==-== upper part designed ==-== */}
 
             <div className=' top-110 flex flex-col items-center gap-4'>
-                <h1 className=' text-center font-bold text-6xl'> We Build <br /> <span className='text-[#632EE3] '>Productive</span> Apps</h1>
-                <p className='w-1/2 text-center text-[#627382]'>At HERO.IO, we craft innovative apps designed to make everyday life simpler, smarter,
+                <h1 className=' text-center font-bold text-3xl md:text-6xl'> We Build <br /> <span className='text-[#632EE3] '>Productive</span> Apps</h1>
+                <p className=' p-1 md:w-1/2 text-center text-[#627382]'>At HERO.IO, we craft innovative apps designed to make everyday life simpler, smarter,
                 and more exciting.Our goal is to turn your ideas into digital experiences that truly make an impact.
                 </p>
 
@@ -42,18 +42,18 @@ const Hero = () => {
 
                 {/*== Bottom designed part ==  */}
 
-            <div className='  bg-linear-to-r from-[#632EE3] to-[#9F62F2]'>
-                <div className=' p-10 flex flex-col items-center  text-white gap-7'>
-                    <h1 className='text-3xl font-bold'>Trusted By Million, Buits for you</h1>
+            <div className=' bg-linear-to-r from-[#632EE3] to-[#9F62F2]'>
+                <div className=' p-5 md:p-10 flex flex-col items-center  text-white gap-7'>
+                    <h1 className='text-2xl md:text-3xl font-bold'>Trusted By Million, Buits for you</h1>
                     <div className='flex gap-15'>
                         <p>Total Download</p>
                         <p>Total Review</p>
                         <p>Active Apps</p>
                     </div>
                     <div className='flex gap-15'>
-                        <h1 className='text-5xl font-bold'> 29.6M </h1>
-                        <h1 className='text-5xl font-bold'> 906k </h1>
-                        <h1 className='text-5xl font-bold'> 906k </h1>
+                        <h1 className='text-2xl md:text-5xl font-bold'> 29.6M </h1>
+                        <h1 className='text-2xl md:text-5xl font-bold'> 906k </h1>
+                        <h1 className='text-2xl md:text-5xl font-bold'> 906k </h1>
                     </div>
                     <div className='flex gap-10'>
                         <p>20% More than last Month</p>
@@ -68,8 +68,8 @@ const Hero = () => {
             {/* ==-== trending apps part ==-==  */}
 
              <div className='flex flex-col justify-center items-center m-5 gap-2 '>
-                <h1 className='text-4xl font-bold'>Trending Apps</h1>
-                <p className=' text-xl text-[#627382]'>Explore All Trending Apps on the Market developed by us</p>
+                <h1 className='text-2xl md:text-4xl font-bold'>Trending Apps</h1>
+                <p className=' md:text-xl text-[#627382]'>Explore All Trending Apps on the Market developed by us</p>
             </div>
 
             <div className=' w-10/12 mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 m-10'>

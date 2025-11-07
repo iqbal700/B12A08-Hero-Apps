@@ -2,10 +2,18 @@ import React from 'react';
 import { BiLogoPlayStore } from "react-icons/bi";
 import { FaAppStoreIos } from "react-icons/fa6";
 import heroImg from '../assets/hero.png'
+import useProducts from '../Hooks/useProducts';
+import ProductCard from './ProductCard';
+import { Link } from 'react-router';
 
 const Hero = () => {
+
+    const {products, loading, error} = useProducts();
+
+     const featuresProducts = products.slice(0, 6);
+
     return (
-        <div>
+        <div className='my-10 text-center'>
 
             {/*==-== upper part designed ==-== */}
 
@@ -56,6 +64,28 @@ const Hero = () => {
                 </div>
                 
             </div>
+
+            {/* ==-== trending apps part ==-==  */}
+
+             <div className='flex flex-col justify-center items-center m-5 gap-2 '>
+                <h1 className='text-4xl font-bold'>Trending Apps</h1>
+                <p className=' text-xl text-[#627382]'>Explore All Trending Apps on the Market developed by us</p>
+            </div>
+
+            <div className=' w-10/12 mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 m-10'>
+            
+                {
+                    featuresProducts.map( product => 
+                       <ProductCard key={product.id} product={product}> </ProductCard>
+                     )
+                }
+            </div>
+
+            <button className='btn hover:scale-103 w-40 bg-linear-to-r from-[#632EE3] to-[#9F62F2]'>
+                
+                <Link to='apps' className='text-white font-semibold text-xs '>ShowAll</Link>
+               
+            </button>
 
         </div>
        

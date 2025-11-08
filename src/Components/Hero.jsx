@@ -8,7 +8,7 @@ import { Link } from 'react-router';
 
 const Hero = () => {
 
-    const {products, loading, error} = useProducts();
+    const {products} = useProducts();
 
      const featuresProducts = products.slice(0, 6);
 
@@ -42,7 +42,7 @@ const Hero = () => {
 
                 {/*== Bottom designed part ==  */}
 
-            <div className=' bg-linear-to-r from-[#632EE3] to-[#9F62F2]'>
+            <div className='bg-linear-to-r from-[#632EE3] to-[#9F62F2]'>
                 <div className=' p-5 md:p-10 flex flex-col items-center  text-white gap-7'>
                     <h1 className='text-2xl md:text-3xl font-bold'>Trusted By Million, Buits for you</h1>
                     <div className='flex gap-15'>
@@ -59,7 +59,6 @@ const Hero = () => {
                         <p>20% More than last Month</p>
                         <p>40% More than last Month</p>
                         <p>50% More than last Month</p>
-                       
                     </div>
                 </div>
                 

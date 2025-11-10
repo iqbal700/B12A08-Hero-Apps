@@ -80,12 +80,10 @@ const Hero = () => {
                 }
             </div>
 
-            <button className='btn hover:scale-103 w-40 bg-linear-to-r from-[#632EE3] to-[#9F62F2]'>
-                
-                <Link to='apps' className='text-white font-semibold text-xs '>ShowAll</Link>
-               
-            </button>
-
+            <Link to='apps' className='text-white font-semibold text-xs btn hover:scale-103 w-40 bg-linear-to-r from-[#632EE3] to-[#9F62F2]'>
+                <button > showAll </button>
+            </Link>
+         
         </div>
        
 

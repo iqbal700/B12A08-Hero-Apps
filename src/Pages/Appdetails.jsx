@@ -1,14 +1,25 @@
 import React, { useEffect, useState } from 'react';
-import useProducts from '../Hooks/useProducts';
 import { Link, useParams } from 'react-router';
 import errorAppImg from '../assets/App-Error.png'
+import { FaArrowDown } from "react-icons/fa";
+import { CiStar } from "react-icons/ci";
+import { AiFillLike } from "react-icons/ai";
+import { addToStoreDB } from '../../../../projects/Boipoka-45/src/Utilities/addtodoDB';
+
 
 const Appdetails = () => {
-   const {id} = useParams();
+
+    const {id} = useParams();
+
+    console.log(id)
     const [appData, setAppData] = useState(null);
-  const [loading, setLoading] = useState(true);
-   
-   
+    const [loading, setLoading] = useState(true);
+
+    const handleInstalledApp = () => {
+
+      addToStoreDB(id)
+    }
+  
   useEffect(() => {
     fetch('/AppData.json')
       .then(res => res.json())
@@ -49,10 +60,67 @@ const Appdetails = () => {
             } 
 
     return (
-        <div>
-            <h1>app details part 01</h1>
-        </div>
+
+        <div className='w-10/12 mx-auto m-10'>
+
+            {/* ==-== top part ==-==  */}
+            <div className='shadow-sm md:shadow-none p-7 rounded-lg'>
+              <div className='flex flex-col lg:flex-row gap-5 items-center border-b border-b-[#627382] pb-7'>
+                <img className='w-70' src={appData.image} alt="" />
+                <div className='flex flex-col gap-6 '>
+                  <div className='space-y-1.5 border-b border-b-[#627382] pb-5'>
+                    <h1 className=' md:text-2xl font-semibold md:font-bold'>{appData.description}</h1>
+                    <p className='text-[15px] md:font-semibold'>
+                      Developed by <span className='text-[#9F62F2]'>{appData.companyName}</span>
+                    </p>
+                  </div>
+                
+                <div className='flex justify-around'>
+                     <div className='flex flex-col gap-1'>
+                      <FaArrowDown />
+                      <p>Downloads</p>
+                        <span className='text-2xl font-bold'>{appData.downloads}</span>
+                    </div>
+
+                    <div className='flex flex-col gap-1'>
+                      <CiStar />
+                      <p >Ratings</p>
+                      <span className='text-2xl font-bold'>{appData.ratingAvg}</span>
+                    </div>
+
+                    <div className='flex flex-col gap-1'>
+                      <AiFillLike />
+                      <p>Avg Ratings</p>
+                      <span className='text-2xl font-bold'>54K</span>
+                    </div>
+
+                </div>
+                <Link to={'/installation'} >
+                  <div>
+                      <button onClick={()=> handleInstalledApp(id)} className='btn w-50 bg-[#00D390] text-white hover:scale-101'>Install Now (<span>{appData.size} MB</span>)</button>
+                  </div>
+                </Link>
+                </div>
+            </div>
+
+          </div>
+
+          {/* ==-== bottom description part ==-==  */}
+
+          <div className='my-5'>
+            <h1 className='text-3xl font-bold '>Description</h1>
+             <p className='text-[#627382] text-justify leading-relaxed'>
+            This focus app takes the proven Pomodoro technique and makes it even more practical for modern lifestyles. Instead of just setting a timer, it builds a complete environment for deep work, minimizing distractions and maximizing concentration. Users can create custom work and break intervals, track how many sessions they complete each day, and review detailed statistics about their focus habits over time. The design is minimal and calming, reducing cognitive load so you can focus entirely on the task at hand. Notifications gently let you know when to pause and when to resume, helping you maintain a healthy rhythm between work and rest.
+            <br />
+            <div className='py-3'></div>
+            A unique feature of this app is the integration of task lists with timers. You can assign each task to a specific Pomodoro session, making your schedule more structured. The built-in analytics show not only how much time you’ve worked but also which tasks consumed the most energy. This allows you to reflect on your efficiency and adjust your workflow accordingly. The app also includes optional background sounds such as white noise, nature sounds, or instrumental music to create a distraction-free atmosphere. <br />
+            <div className='py-4'></div>
+            For people who struggle with procrastination, the app provides motivational streaks and achievements. Completing multiple Pomodoro sessions unlocks milestones, giving a sense of accomplishment. This gamified approach makes focusing more engaging and less like a chore. Whether you’re studying for exams, coding, writing, or handling office work, the app adapts to your routine. By combining focus tracking, task management, and motivational tools, this Pomodoro app ensures that you not only work harder but also smarter. It is a personal trainer for your brain, keeping you disciplined, refreshed, and productive throughout the day.
+             </p>
+          </div>
+       </div>
     );
 };
 
 export default Appdetails;
+

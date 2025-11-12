@@ -3,17 +3,19 @@ import { Link, NavLink } from 'react-router';
 import './style.css'
 import { FaGithub } from "react-icons/fa";
 import logoImg from '../assets/logo.png';
-
+import { FaHome } from "react-icons/fa";
+import { FaAppStore } from "react-icons/fa";
+import { FaCloudDownloadAlt } from "react-icons/fa";
 
 
 
 
 const Navbar = () => {
     const Links =
-      <>
-        <NavLink  to='/' >Home</NavLink>
-        <NavLink  to='/apps'>Apps</NavLink>
-        <NavLink  to='/installation'>Installation</NavLink>
+      < >
+        <NavLink  to='/' > <FaHome className='inline mr-1' /> Home  </NavLink>
+        <NavLink  to='/apps'> <FaAppStore className='inline mr-0.5'/> Apps</NavLink>
+        <NavLink  to='/installation'>  <FaCloudDownloadAlt className='inline mr-0.5' /> Installation</NavLink>
       </>
        
 
@@ -26,7 +28,7 @@ const Navbar = () => {
             </div>
             <ul
                 tabIndex="-1"
-                className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow font-semibold">
+                className="menu menu-sm dropdown-content rounded-box z-1 mt-3 w-52 p-2 shadow font-semibold">
                   {Links}
             </ul>
             </div>
@@ -38,7 +40,7 @@ const Navbar = () => {
         </div>
       
          <div className="navbar-center hidden lg:flex">
-            <ul className="menu flex text-[1.1rem] gap-3 font-semibold menu-horizontal px-1">
+            <ul className="menu space-x-5 flex text-[1.1rem] gap-3 font-semibold menu-horizontal px-1">
                  {Links}
             </ul>
         </div>

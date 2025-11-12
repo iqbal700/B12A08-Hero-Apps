@@ -4,7 +4,8 @@ import errorAppImg from '../assets/App-Error.png'
 import { FaArrowDown } from "react-icons/fa";
 import { CiStar } from "react-icons/ci";
 import { AiFillLike } from "react-icons/ai";
-import { addToStoreDB } from '../../../../projects/Boipoka-45/src/Utilities/addtodoDB';
+import { addToStoreDB } from '../utilities/addtoDB';
+import { Area, Bar, CartesianGrid, ComposedChart, Legend, Line, Tooltip, XAxis, YAxis } from 'recharts';
 
 
 const Appdetails = () => {
@@ -14,10 +15,14 @@ const Appdetails = () => {
     console.log(id)
     const [appData, setAppData] = useState(null);
     const [loading, setLoading] = useState(true);
+    const [installBtn, setInstallBtn] = useState(false)
+
+    console.log(appData)
 
     const handleInstalledApp = () => {
 
       addToStoreDB(id)
+      setInstallBtn(true);
     }
   
   useEffect(() => {
@@ -50,8 +55,8 @@ const Appdetails = () => {
               return <div className='flex flex-col justify-center items-center text-center gap-5 min-h-screen'>
                          <img src={errorAppImg} alt="errorImg" />
                          <div className='flex flex-col text-center gap-1'>
-                            <h1>Oops, page not found</h1>
-                            <p>The page you are looking for is not available.</p>
+                            <h1>Oops, Apps not found</h1>
+                            <p>The App you are looking for is not available.</p>
                               <Link to='/' > 
                                   <button className='btn w-35 mt-2 bg-linear-to-r from-[#632EE3] to-[#9F62F2] text-white'> Go Back </button>
                               </Link>  
@@ -95,15 +100,62 @@ const Appdetails = () => {
                     </div>
 
                 </div>
-                <Link to={'/installation'} >
+                <Link to={''} >
                   <div>
-                      <button onClick={()=> handleInstalledApp(id)} className='btn w-50 bg-[#00D390] text-white hover:scale-101'>Install Now (<span>{appData.size} MB</span>)</button>
+                      <button
+                          onClick={() => handleInstalledApp(id)}
+                            className='btn w-50 bg-[#00D390] text-white hover:scale-101'
+                          >
+                            {installBtn ? (
+                              'Installed'
+                            ) : (
+                              <span>
+                                Install Now (<span className="font-semibold">{appData.size} MB</span>)
+                              </span>
+                            )}
+                      </button>
+
                   </div>
                 </Link>
                 </div>
             </div>
-
           </div>
+
+
+          {/* ==-== Chart Option start here ==-==  */}
+
+
+          
+        <div className='space-y-3'>
+            <h1 className='text-2xl font-bold'>Ratings</h1>
+            <div className='bg-base-100 rounded-xl h-150 p-4'>
+                <ComposedChart
+                      layout="vertical"
+                      style={{ width: '100%', maxWidth: '300px', maxHeight: '70vh', aspectRatio: 1 / 1.618 }}
+                      responsive
+                       data={[...(appData?.ratings || [])].sort((a, b) => b.name.localeCompare(a.name))}
+                      margin={{
+                        top: 20,
+                        right: 0,
+                        bottom: 0,
+                        left: 0,
+                      }}
+                    >
+                      <XAxis
+                       type="ratings"
+                        dataKey="count" />
+                      <YAxis
+                         dataKey="name"
+                         type="category"
+                         scale="band"
+                         width="auto" />
+                      <Tooltip />
+                      <Bar dataKey="count" barSize={30} fill="#FF8811" />
+                       <Line dataKey="uv" stroke="#FF8811" />
+                  </ComposedChart>
+            </div>
+        </div>
+
 
           {/* ==-== bottom description part ==-==  */}
 
